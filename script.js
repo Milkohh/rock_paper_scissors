@@ -6,6 +6,12 @@ function getPlayerChoice() {
             "Enter selection (Rock, Paper or Scissors): "
         );
 
+        // Check if choice was not null
+        if (playerChoice == null) {
+            alert("Invalid input! Please enter (Rock, Paper or Scissors)");
+            continue;
+        }
+
         // Choice is expected to be capitalized
         playerChoice =
             playerChoice.slice(0, 1).toUpperCase() +
@@ -18,7 +24,6 @@ function getPlayerChoice() {
             return playerChoice;
         }
     }
-
 }
 
 function getComputerChoice() {
@@ -88,4 +93,6 @@ function game() {
     }
 }
 
-// game();
+window.onload = function () {
+    game();
+};
