@@ -1,6 +1,11 @@
 const choices = ["Rock", "Paper", "Scissors"];
 
-function computerPlay() {
+function getPlayerChoice() {
+    let playerChoice = prompt("Enter selection (Rock, Paper, Scissors): ");
+    return playerChoice;
+}
+
+function getComputerChoice() {
     const selection = Math.floor(Math.random() * 3);
     return choices[selection];
 }
@@ -45,8 +50,9 @@ function game() {
     let computerScore = 0;
 
     for (let i = 0; i < 5; ++i) {
-        const computerChoice = computerPlay();
-        const message = playRound("Rock", computerChoice);
+        const playerChoice = getPlayerChoice();
+        const computerChoice = getComputerChoice();
+        const message = playRound(playerChoice, computerChoice);
 
         if (message.includes("Win")) {
             playerScore++;
@@ -57,7 +63,7 @@ function game() {
         console.log(message);
     }
 
-    console.log(`Player: ${playerScore} - Computer: ${computerScore}`)
+    console.log(`Player: ${playerScore} - Computer: ${computerScore}`);
 
     if (playerScore > computerScore) {
         console.log("You win!");
@@ -65,3 +71,5 @@ function game() {
         console.log("You lose!");
     }
 }
+
+game();
