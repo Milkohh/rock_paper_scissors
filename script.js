@@ -39,3 +39,29 @@ function playRound(playerSelection, computerSelection) {
         return `You Draw ${playerSelection} is the same as ${computerSelection}`;
     }
 }
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; ++i) {
+        const computerChoice = computerPlay();
+        const message = playRound("Rock", computerChoice);
+
+        if (message.includes("Win")) {
+            playerScore++;
+        } else if (message.includes("Lose")) {
+            computerScore++;
+        }
+
+        console.log(message);
+    }
+
+    console.log(`Player: ${playerScore} - Computer: ${computerScore}`)
+
+    if (playerScore > computerScore) {
+        console.log("You win!");
+    } else {
+        console.log("You lose!");
+    }
+}
