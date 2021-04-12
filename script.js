@@ -1,8 +1,24 @@
 const choices = ["Rock", "Paper", "Scissors"];
 
 function getPlayerChoice() {
-    let playerChoice = prompt("Enter selection (Rock, Paper, Scissors): ");
-    return playerChoice;
+    while (true) {
+        let playerChoice = prompt(
+            "Enter selection (Rock, Paper or Scissors): "
+        );
+
+        // Choice is expected to be capitalized
+        playerChoice =
+            playerChoice.slice(0, 1).toUpperCase() +
+            playerChoice.slice(1).toLowerCase();
+
+        // If user input is not in valid choices prompt for correct input
+        if (!choices.includes(playerChoice)) {
+            alert("Invalid input! Please enter (Rock, Paper or Scissors)");
+        } else {
+            return playerChoice;
+        }
+    }
+
 }
 
 function getComputerChoice() {
@@ -72,4 +88,4 @@ function game() {
     }
 }
 
-game();
+// game();
