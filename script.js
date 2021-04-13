@@ -1,9 +1,35 @@
 const choices = ["Rock", "Paper", "Scissors"];
 
+const buttons = document.querySelectorAll("button");
+const resultDiv = document.getElementById("result");
+const resultText = document.createElement("h3");
+const scoreDiv = document.getElementById("score");
+
+let playerScore = 0;
+let computerScore = 0;
+scoreDiv.textContent = `Player: ${playerScore} - Computer: ${computerScore}`;
+
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const result = playRound(e.target.textContent, getComputerChoice());
+
+    if (result.includes("Win")) {
+      playerScore++;
+    } else if (result.includes("Lose")) {
+      computerScore++;
+    }
+    
+    scoreDiv.textContent = `Player: ${playerScore} - Computer: ${computerScore}`;
+    resultText.textContent = result;
+  });
+});
+
+resultDiv.appendChild(resultText);
+
 function getPlayerChoice() {
   let validInput = false;
   let playerChoice;
-  
+
   do {
     playerChoice = prompt("Enter selection (Rock, Paper or Scissors): ");
 
@@ -61,41 +87,10 @@ function playRound(playerSelection, computerSelection) {
 
   // Check who won and return the resulting message
   if (computerWin) {
-    return `You Lose ${computerSelection} beats ${playerSelection}`;
+    return `You Lose! ${computerSelection} beats ${playerSelection}`;
   } else if (playerWin) {
-    return `You Win ${playerSelection} beats ${computerSelection}`;
+    return `You Win! ${playerSelection} beats ${computerSelection}`;
   } else {
-    return `You Draw ${playerSelection} is the same as ${computerSelection}`;
+    return `You Draw! ${playerSelection} is the same as ${computerSelection}`;
   }
 }
-
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-
-  for (let i = 0; i < 5; ++i) {
-    const playerChoice = getPlayerChoice();
-    const computerChoice = getComputerChoice();
-    const message = playRound(playerChoice, computerChoice);
-
-    if (message.includes("Win")) {
-      playerScore++;
-    } else if (message.includes("Lose")) {
-      computerScore++;
-    }
-
-    console.log(message);
-  }
-
-  console.log(`Player: ${playerScore} - Computer: ${computerScore}`);
-
-  if (playerScore > computerScore) {
-    console.log("You win!");
-  } else {
-    console.log("You lose!");
-  }
-}
-
-window.onload = function () {
-  game();
-};

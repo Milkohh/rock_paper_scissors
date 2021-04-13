@@ -1,3 +1,28 @@
 body {
-  background-color: black;
+  color: white;
+  background-color: #232627;
+}
+
+#score {
+  font-size: 24px;
+  text-align: center;
+  margin: 15px;
+}
+
+#content {
+  margin-top: 150px;
+}
+
+#options {
+  display: flex;
+  justify-content: center;
+}
+
+#options button {
+  padding: 10px 25px;
+  margin: 15px;
+}
+
+#result {
+  text-align: center;
 }
