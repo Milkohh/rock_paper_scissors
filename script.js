@@ -1,8 +1,11 @@
 const choices = ["Rock", "Paper", "Scissors"];
 
 function getPlayerChoice() {
-  while (true) {
-    let playerChoice = prompt("Enter selection (Rock, Paper or Scissors): ");
+  let validInput = false;
+  let playerChoice;
+  
+  do {
+    playerChoice = prompt("Enter selection (Rock, Paper or Scissors): ");
 
     // Check if choice was not null
     if (playerChoice == null) {
@@ -19,9 +22,11 @@ function getPlayerChoice() {
     if (!choices.includes(playerChoice)) {
       alert("Invalid input! Please enter (Rock, Paper or Scissors)");
     } else {
-      return playerChoice;
+      validInput = true;
     }
-  }
+  } while (!validInput);
+
+  return playerChoice;
 }
 
 function getComputerChoice() {
